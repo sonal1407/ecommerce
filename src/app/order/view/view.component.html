@@ -1,0 +1,30 @@
+<h1>View Order</h1>
+<table>
+  <tr  >
+    <th>Id</th>
+    <th>EmailId</th>
+    <th>Name</th>
+    <th>MobileNumber</th>
+    <th>Date </th>
+    <th>PinCode</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Action</th>
+  </tr>
+
+  <tr *ngFor="let order of orders">
+    <td>{{order.id}}</td>
+    <td>{{order.emailId}}</td>
+    <td>{{order.name}}</td>
+    <td>{{order.mobileNumber}}</td>
+    <td>{{order.date}}</td>
+    <td>{{order.pincode}}</td>
+    <td>{{order.address}}</td>
+    <td>{{order.city}}</td>
+    <td>{{order.state}}</td>
+    <td><button  (click)="deleteOrder(order.id)">Delete</button></td>
+    <td><button  routerLink = "/order/edit/{{order.id}}">Edit</button></td>
+    
+  </tr>
+</table>
