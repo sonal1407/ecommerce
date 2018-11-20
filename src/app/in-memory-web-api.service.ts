@@ -4,13 +4,13 @@
 
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 //-----------------------
-import { Order } from './order/order';
+import { Order } from './order/order.model';
 
 export class InMemoryWebApiService implements InMemoryDbService {
 	/**
 	 * create Database
 	 */
-	createDb() {
+	createDb(): {} {
 		const orders: Order[] = [
 			{
 				id: 30,

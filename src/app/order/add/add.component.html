@@ -1,42 +1,50 @@
 <h1>Add Order</h1>
-<form [formGroup]="addOrderForm" novalidate class="form"><br>
+<form [formGroup]="addOrderForm" novalidate  class="form"><br>
   
   <label>Name</label>
   <input type="text" placeholder="name" formControlName="name" >
-  
-  <div *ngIf="(addOrderForm.get('name').touched || addOrderForm.get('name').dirty ) && addOrderForm.get('name').errors" class="alert alert-danger">
-      <div *ngIf="addOrderForm.get('name').errors.required">
-       Required  Name cannot be left blank.
-      </div>
-          </div>
-  
+  <div *ngIf="name.invalid &&(name.pristine)" class="danger">
+      Required  Name cannot be left blank.
+     </div>
+
+  <div *ngIf="name.invalid &&(name.touched || name.dirty && name.pristine)" class="danger">
+  please fil out   
+  </div>
+            
   <br><br>
   <label>EmailId</label>
   <input type="text" placeholder="EmailId" formControlName="emailId" >
   
-  <div *ngIf="(addOrderForm.get('emailId').touched || addOrderForm.get('emailId').dirty ) && addOrderForm.get('emailId').errors" class="alert alert-danger">
-      <div *ngIf="addOrderForm.get('emailId').errors.required">
-        Required Email cannot be left blank.
-      </div>
-      <div *ngIf="addOrderForm.get('emailId').errors.pattern">
-       Requried valid Email Address.
-      </div>
-    </div>
-<!-- </div> -->
+  <div *ngIf="emailId.invalid && (emailId.touched || emailId.dirty )" class="alert alert-danger">
+      
+    filed cannot be blank
+  </div>
+      <div *ngIf="emailId.invalid && (emailId.pristine)">
+          Required Email cannot be left blank.
+        </div>
+
   <br><br>
   <label>MobileNumber</label>
   <input type="text" placeholder="mobileNumber" formControlName="mobileNumber" >
+  
+  <div *ngIf="mobileNumber.invalid && (mobileNumber.pristine)" class="danger">
+      please fill required</div>
+      
   <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)" class="danger">
-    required</div>
+    Maximum is 10 number</div>
   <br><br>
   <label>Pincode</label>
   <input type="text" placeholder="pincode" formControlName="pincode" >
+  <div *ngIf="pincode.invalid && (pincode.pristine)" class="danger">
+    please  required</div>
   <div *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)" class="danger">
     required</div>
   <br><br>
   
   <label>Address</label>
   <input type="text" placeholder="Address" formControlName="address" >
+  <div *ngIf="address.invalid && (address.dirty || address.touched)" class="danger">
+      required</div>
   <div *ngIf="address.invalid && (address.dirty || address.touched)" class="danger">
     required</div>
   <br><br>
@@ -47,25 +55,31 @@
         <option *ngFor="let state of state1">{{state}}</option>
       </select>
     </div>
-  <!-- <input type="text" placeholder="State"  > -->
-  <div *ngIf="state.invalid && (city.dirty || state.touched)" class="danger">
+    
+  <div *ngIf="state.invalid && (state.pristine)" class="danger">
+    please  required</div>
+  
+  <div *ngIf="state.invalid && (state.dirty || state.touched)" class="danger">
     required</div>
     
   <br><br>
   <label>City</label>
   <input type="text" placeholder="City" formControlName="city" >
+  
+  <div *ngIf="city.invalid && (city.pristine)" class="danger">
+      please fill out</div>
   <div *ngIf="city.invalid && (city.dirty || city.touched)" class="danger">
     required</div>
     
   <br><br>
-  <label >Date</label>
+  <!-- <label >Date</label>
   
   <input class="form-control" placeholder="yyyy-mm-dd"  name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date">
 
 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">date</button>
 <div *ngIf="state.invalid && (date.dirty || date.touched)" class="danger">
   required</div>
-<br>
+<br> -->
     
     <br>
   <button (click)="addOrder(addOrderForm.value)">AddOrder</button>

@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 //--------------------------
 import { OrderService } from '../order.service';
-import { Order } from '../order';
+import { Order } from '../order.model';
 
 @Component({
 	selector: 'app-view',
@@ -29,7 +29,7 @@ export class ViewComponent implements OnInit {
 		this.getOrders();
 	}
 	/**
-   * @param by the particular iddelete the record of the user
+   * @param id by the particular iddelete the record of the user
    */
 	public deleteOrder(id: number) {
 		this.orderService.deleteOrder(id).subscribe(() => {

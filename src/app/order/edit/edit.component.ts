@@ -3,11 +3,11 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 //-----------------------
 import { OrderService } from '../order.service';
-
+import { Order } from '../order.model';
 
 @Component({
 	selector: 'app-edit',
@@ -16,7 +16,7 @@ import { OrderService } from '../order.service';
 })
 export class EditComponent implements OnInit {
 	public editOrderForm: FormGroup;
-	public orderDetails;
+	public orderDetails: Order;
 
 	constructor(
 		private fb: FormBuilder,
@@ -24,12 +24,17 @@ export class EditComponent implements OnInit {
 		private route: ActivatedRoute,
 		private service: OrderService
 	) {}
-	public editForm() {
+
+	ngOnInit() {
+		this.editForm();
+		this.getDetails();
+	}
+	public editForm(): void {
 		this.editOrderForm = this.fb.group({
 			id: [ '' ],
 			emailId: [ '' ],
 			name: [ '' ],
-			date:[''],
+			date: [ '' ],
 			mobileNumber: [ '' ],
 			pincode: [ '' ],
 			address: [ '' ],
@@ -42,31 +47,31 @@ export class EditComponent implements OnInit {
 	 * get the  form value for a validation
 	 */
 
-	public get emailId() {
+	public get emailId(): AbstractControl {
 		return this.editOrderForm.get('emailId');
 	}
-	public get name() {
+	public get name(): AbstractControl {
 		return this.editOrderForm.get('name');
 	}
-	public get mobileNumber() {
+	public get mobileNumber(): AbstractControl {
 		return this.editOrderForm.get('mobileNumber');
 	}
-	
-	public get pincode() {
+
+	public get pincode(): AbstractControl {
 		return this.editOrderForm.get('pincode');
 	}
-	public get address() {
+	public get address(): AbstractControl {
 		return this.editOrderForm.get('address');
 	}
-	public get city() {
+	public get city(): AbstractControl {
 		return this.editOrderForm.get('city');
 	}
-	
-	public get date() {
+
+	public get date(): AbstractControl {
 		return this.editOrderForm.get('date');
 	}
 
-	public get state() {
+	public get state(): AbstractControl {
 		return this.editOrderForm.get('state');
 	}
 
@@ -93,14 +98,11 @@ export class EditComponent implements OnInit {
 			});
 		});
 	}
-	ngOnInit() {
-		this.editForm();
-		this.getDetails();
-	}
+
 	/**
    * Edit the user order
    */
-	public editOrder():void {
+	public editOrder(): void {
 		this.service.updateOrder(this.editOrderForm.value).subscribe(() => {
 			this.router.navigate([ '/order/view' ]);
 		});

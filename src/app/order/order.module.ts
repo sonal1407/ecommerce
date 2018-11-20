@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-//-----------------------
+//-----------------------//
 import { OrderRoutingModule } from './order-routing.module';
 import { AddComponent } from './add/add.component';
 import { ViewComponent } from './view/view.component';
